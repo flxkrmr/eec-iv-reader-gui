@@ -1,0 +1,14 @@
+{
+  "name": "eec-iv-reader-ui",
+  "version": "1.0.0",
+  "description": "GUI for EEC IV Reader",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Felix Kramer",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.1.3"
+  }
+}

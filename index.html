@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"/>
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"/>
+
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+
+    <title>Hello from Electron renderer!</title>
+  </head>
+  <body>
+    <h1>Web Serial API</h1>
+
+    <button id="serialconnect">Connect</button>
+    <button id="serialdisconnect">Disconnect</button>
+
+    <p>Matching Arduino Uno device: <strong id="device-name"></strong></p>
+  </body>
+  <script src="./renderer.js"></script>
+</html>
