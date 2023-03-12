@@ -10,18 +10,88 @@
 
     <title>EEC IV Reader GUI</title>
   </head>
-  <body>
-    <div class="container">
-      <h1>EEC IV Reader GUI</h1>
 
-      <button id="serialconnect" class="btn btn-primary">Connect</button>
-  
-      <div class="alert alert-primary" role="alert" id="alert">
-        A simple primary alert—check it out!
+  <body>
+    <div class="container-fluid main-container">
+      <div class="row control-container">
+        <div class="col">
+          <button id="serialconnect" class="btn btn-primary">Connect</button>
+        </div>
+      </div>
+
+      <div class="row border data-container" id="init-data-container">
+        <div class="col">
+          <h3>
+            Emptiness
+          </h3>
+        </div>
+      </div>
+
+      <div class="row border data-container" id="live-data-container">
+        <div class="col">
+          <h3>
+            Live Data
+          </h3>
+          <table class="table table-sm data-table">
+            <tbody>
+              <tr>
+                <td class="data-type">RPM</td>
+                <td id="data-rpm">1000</td>
+              </tr>
+              <tr>
+                <td class="data-type">Lambda</td>
+                <td id="data-lambda">1</td>
+              </tr>
+              <tr>
+                <td class="data-type">Supply Voltage</td>
+                <td id="data-supply-voltage">12 V</td>
+              </tr>
+              <tr>
+                <td class="data-type">Throttle Position</td>
+                <td id="data-throttle">15 %</td>
+              </tr>
+              <tr>
+                <td class="data-type">Coolant Temperature</td>
+                <td id="data-coolant-temp">20 C (12 V)</td>
+              </tr>
+              <tr>
+                <td class="data-type">Air Temperature</td>
+                <td id="data-air-temp">20 C (12 V)</td>
+              </tr>
+              <tr>
+                <td class="data-type">Idle Value</td>
+                <td id="data-idle-valve">12 V</td>
+              </tr>
+              <tr>
+                <td class="data-type">EGR Differential Preasure</td>
+                <td id="data-egr">12 V</td>
+              </tr>
+              <tr>
+                <td class="data-type">Injection PUlse</td>
+                <td id="data-inj-pulse">12 V</td>
+              </tr>
+              <tr>
+                <td class="data-type">Injection Timing</td>
+                <td id="data-inj-timing">12 V</td>
+              </tr>
+              <tr>
+                <td class="data-type">Sensor Power Voltage</td>
+                <td id="data-sensor-power-voltage">12 V</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row alert-container">
+        <div class="col">
+          <div class="alert alert-primary alert-dismissible fade show" role="alert" id="alert">
+            Welcome!
+          </div>
+        </div>
       </div>
     </div>
   </body>
-  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
 
   <script src="./lib/serial.js"></script>
   <script src="./renderer.js"></script>

@@ -1,0 +1,31 @@
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.control-container {
+    margin-top: 12px;
+}
+
+.data-container {
+    height: 100%;
+    margin: 12px 0 12px;
+}
+
+#live-data-container {
+    display: none;
+}
+
+.data-table .data-type {
+    width: 20%;
+}
