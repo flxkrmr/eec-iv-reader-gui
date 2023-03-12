@@ -4,18 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'"/>
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"/>
+    <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css" />
 
     <link rel="stylesheet" type="text/css" href="./styles.css">
 
-    <title>Hello from Electron renderer!</title>
+    <title>EEC IV Reader GUI</title>
   </head>
   <body>
-    <h1>Web Serial API</h1>
+    <div class="container">
+      <h1>EEC IV Reader GUI</h1>
 
-    <button id="serialconnect">Connect</button>
-    <button id="serialdisconnect">Disconnect</button>
-
-    <p>Matching Arduino Uno device: <strong id="device-name"></strong></p>
+      <button id="serialconnect" class="btn btn-primary">Connect</button>
+  
+      <div class="alert alert-primary" role="alert" id="alert">
+        A simple primary alert—check it out!
+      </div>
+    </div>
   </body>
+  <script src="./vendor/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="./lib/serial.js"></script>
   <script src="./renderer.js"></script>
 </html>
