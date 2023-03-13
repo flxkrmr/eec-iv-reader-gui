@@ -24,6 +24,19 @@ body {
 
 #live-data-container {
     display: none;
+    opacity: 0.7;
+}
+
+#fault-code-data-container {
+    display: none;
+    opacity: 0.7;
+}
+
+#init-data-container-message {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .data-table .data-type {
