@@ -113,7 +113,7 @@ async function serialConnect() {
 
   serial.onReaderOnline = () => {
     alert.showAndFade("EEC-IV-Reader connected!"); 
-    initDataContainerMessage.innerHTML = 'Please select mode on EEC-IV-Reader';
+    initDataContainerMessage.innerHTML = 'Please connect EEC-IV Reader and click the Connect Button.';
     loadingSpinner.style.display = 'none';
   };
 
