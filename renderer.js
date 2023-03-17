@@ -147,7 +147,7 @@ async function serialConnect() {
     loadingSpinner.style.display = 'none';
 
     if (faultCodeType == 0x02) {
-      alert.show("Received Fault Codes. Please turn Ignition on and off for further readings!");
+      alert.show("Received Fault Codes. Please turn Ignition off and on for further readings!");
     } else {
       alert.showAndFade("Received Fault Codes");
     }
