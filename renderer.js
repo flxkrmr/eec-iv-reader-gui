@@ -5,6 +5,9 @@ const initDataContainer = document.getElementById('init-data-container');
 const liveDataContainer = document.getElementById('live-data-container');
 const faultCodeDataContainer = document.getElementById('fault-code-data-container');
 let faultCodeType = 0;
+const liveDataDot = document.getElementById('live-data-dot');
+let liveDataTimeoutId = 0;
+let firstLiveData = true;
 
 const alert = new Alert(document.getElementById('alert'));
 
@@ -148,6 +151,9 @@ async function serialConnect() {
       faultCodeType = type;
     } else if (type == 0x03) {
       alert.showAndFade("Live Data Reading started...");
+      firstLiveData = true;
+      liveDataDot.classList.remove("go-red");
+      liveDataDot.classList.remove("green");
       loadingSpinner.style.display = 'block';
       liveDataContainer.style.opacity = 0.4;
 
@@ -181,8 +187,20 @@ async function serialConnect() {
   }
 
   serial.onLiveData = (data) => {
+    clearTimeout(liveDataTimeoutId);
+    liveDataDot.classList.remove("go-red");
+    liveDataDot.classList.add("green");
+    liveDataTimeoutId = setTimeout(liveDataDot => {
+      liveDataDot.classList.remove("green");
+      liveDataDot.classList.add("go-red");
+    }, 2000, liveDataDot)
+
     // only first time and fade out
-    alert.show("Receiving Live Data")
+    if (firstLiveData) {
+      alert.showAndFade("Receiving Live Data");
+      firstLiveData = false;
+    }
+
     liveDataContainer.style.opacity = 1;
     loadingSpinner.style.display = 'none';
 

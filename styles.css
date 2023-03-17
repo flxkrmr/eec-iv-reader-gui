@@ -64,3 +64,20 @@ body {
     opacity: 0;
     transition: visibility 0s 2s, opacity 2s linear;
 }
+
+.go-red {
+    background-color: red !important;
+    transition: background-color 2s linear;
+}
+
+.green {
+    background-color: green !important;
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+  }
