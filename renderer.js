@@ -1,10 +1,13 @@
 const connectButton = document.getElementById('serialconnect');
-const alertBox = document.getElementById('alert');
 const initDataContainer = document.getElementById('init-data-container');
 const liveDataContainer = document.getElementById('live-data-container');
 const faultCodeDataContainer = document.getElementById('fault-code-data-container');
 
+const alert = new Alert(document.getElementById('alert'));
+
 const initDataContainerMessage = document.getElementById('init-data-container-message');
+const loadingSpinner = document.getElementById('spinner-overlay');
+loadingSpinner.style.display = 'none';
 
 const faultCodeFields = [
   document.getElementById('fault-code-1'),
@@ -57,7 +60,9 @@ const serial = new Serial();
 
 async function serialConnect() {
   connectButton.disabled = true;
-  alertBox.innerHTML="Connecting to EEC-IV-Reader..."; 
+  alert.show("Connecting to EEC-IV-Reader..."); 
+  initDataContainerMessage.innerHTML = '';
+  loadingSpinner.style.display = 'block';
   console.log("Connecting");
 
   const ports = await serial.getPorts();
@@ -67,10 +72,11 @@ async function serialConnect() {
   serial.connect(port, exception => {
     console.log("Connection error");
     console.log(exception);
-    alertBox.innerHTML="An error occured while connecting"; 
+    alert.show("An error occured while connecting"); 
     connectButton.disabled = false;
 
     initDataContainerMessage.innerHTML = 'Please connect EEC-IV-Reader';
+    loadingSpinner.style.display = 'none';
     
     initDataContainer.style.display = 'flex';
     faultCodeDataContainer.style.display = 'none';
@@ -80,44 +86,50 @@ async function serialConnect() {
   });
 
   serial.onReaderOnline = () => {
-    alertBox.innerHTML="EEC-IV-Reader connected!"; 
+    alert.showAndFade("EEC-IV-Reader connected!"); 
     initDataContainerMessage.innerHTML = 'Please select mode on EEC-IV-Reader';
+    loadingSpinner.style.display = 'none';
   };
 
   serial.onTimeoutError = () => {
-    alertBox.innerHTML="Reader could not connect to ECU. Is the ignition on?";
+    alert.show("Reader could not connect to ECU. Is the ignition on?");
+    loadingSpinner.style.display = 'none';
   }
 
   serial.onReadingStarted = type => {
     if (type == 0x01) {
-      alertBox.innerHTML="Fault Code Memory Reading started...";
+      alert.showAndFade("Fault Code Memory Reading started...");
+      loadingSpinner.style.display = 'block';
 
       faultCodeFields.forEach((field) => field.innerHTML = "");
       faultCodeDescFields.forEach((field) => field.innerHTML = "");
-      faultCodeDataContainer.style.opacity = 0.7;
+      faultCodeDataContainer.style.opacity = 0.4;
 
       initDataContainer.style.display = 'none';
       faultCodeDataContainer.style.display = 'flex';
       liveDataContainer.style.display = 'none';
     } else if (type == 0x02) {
-      alertBox.innerHTML="KOEO/KOER Test started...";
+      alert.showAndFade("KOEO/KOER Test started...");
+      loadingSpinner.style.display = 'block';
 
       faultCodeFields.forEach((field) => field.innerHTML = "");
       faultCodeDescFields.forEach((field) => field.innerHTML = "");
-      faultCodeDataContainer.style.opacity = 0.7;
+      faultCodeDataContainer.style.opacity = 0.4;
 
       initDataContainer.style.display = 'none';
       faultCodeDataContainer.style.display = 'flex';
       liveDataContainer.style.display = 'none';
     } else if (type == 0x03) {
-      alertBox.innerHTML="Live Data Reading started...";
-      liveDataContainer.style.opacity = 0.7;
+      alert.showAndFade("Live Data Reading started...");
+      loadingSpinner.style.display = 'block';
+      liveDataContainer.style.opacity = 0.4;
 
       initDataContainer.style.display = 'none';
       faultCodeDataContainer.style.display = 'none';
       liveDataContainer.style.display = 'flex';
     } else {
-      alertBox.innerHTML="Unknown Reading started";
+      alert.showAndFade("Unknown Reading started");
+      loadingSpinner.style.display = 'block';
       initDataContainer.style.display = 'flex';
       faultCodeDataContainer.style.display = 'none';
       liveDataContainer.style.display = 'none';
@@ -127,7 +139,8 @@ async function serialConnect() {
   serial.onFaultCodes = (data) => {
     const eecIvDecoder = new EecIvDecoder();
     faultCodeDataContainer.style.opacity = 1;
-    alertBox.innerHTML = "Received Fault Codes";
+    alert.showAndFade("Received Fault Codes");
+    loadingSpinner.style.display = 'none';
 
     eecIvDecoder.getAllFaultCodes(data).forEach((code, i) => {
       faultCodeFields[i].innerHTML = code;
@@ -136,8 +149,10 @@ async function serialConnect() {
   }
 
   serial.onLiveData = (data) => {
-    alertBox.innerHTML="Receiving live data";
+    // only first time and fade out
+    alert.show("Receiving Live Data")
     liveDataContainer.style.opacity = 1;
+    loadingSpinner.style.display = 'none';
 
     const eecIvDecoder = new EecIvDecoder();
     liveDataRpm.innerHTML=eecIvDecoder.toRpm(data.slice(0, 2));

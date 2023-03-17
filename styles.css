@@ -42,3 +42,25 @@ body {
 .data-table .data-type {
     width: 20%;
 }
+
+#alert {
+    display: block;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin-left: 1rem;
+}
+
+#spinner-overlay {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
