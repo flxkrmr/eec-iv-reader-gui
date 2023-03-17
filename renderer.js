@@ -84,7 +84,7 @@ async function serialDisconnect() {
 
 async function serialConnect() {
   connectButton.disabled = true;
-  alert.show("Connecting to EEC-IV-Reader..."); 
+  alert.show("Connecting to EEC-IV-Reader...");
   initDataContainerMessage.innerHTML = '';
   loadingSpinner.style.display = 'block';
   console.log("Connecting");
@@ -92,7 +92,7 @@ async function serialConnect() {
   const ports = await serial.getPorts();
 
   if (ports.length == 0) {
-    alert.show("No ports found. Is Reader connected?"); 
+    alert.show("No ports found. Is Reader connected?", true); 
     connectButton.disabled = false;
     disconnectButton.disabled = true;
 
@@ -111,7 +111,7 @@ async function serialConnect() {
   serial.connect(port, exception => {
     console.log("Connection error");
     console.log(exception);
-    alert.show("An error occured while connecting"); 
+    alert.show("An error occured while connecting", true); 
     connectButton.disabled = false;
     disconnectButton.disabled = true;
 
@@ -133,7 +133,7 @@ async function serialConnect() {
   };
 
   serial.onTimeoutError = () => {
-    alert.show("Reader could not connect to ECU. Is the ignition on?");
+    alert.show("Reader could not connect to ECU. Is the ignition on?", true);
     loadingSpinner.style.display = 'none';
   }
 
