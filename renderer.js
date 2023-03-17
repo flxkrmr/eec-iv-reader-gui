@@ -1,4 +1,6 @@
 const connectButton = document.getElementById('serialconnect');
+const disconnectButton = document.getElementById('serialdisconnect');
+
 const initDataContainer = document.getElementById('init-data-container');
 const liveDataContainer = document.getElementById('live-data-container');
 const faultCodeDataContainer = document.getElementById('fault-code-data-container');
@@ -55,9 +57,27 @@ const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
 const liveDataSensorPowerVoltage = document.getElementById('data-sensor-power-voltage');
 
-connectButton.addEventListener('click',serialConnect);
+connectButton.addEventListener('click', serialConnect);
+disconnectButton.addEventListener('click', serialDisconnect);
 
 const serial = new Serial();
+
+async function serialDisconnect() {
+  console.log("Disconnecting");
+  loadingSpinner.style.display = 'block';
+  await serial.disconnect();
+  loadingSpinner.style.display = 'none';
+  alert.showAndFade("EEC-IV-Reader disconnected"); 
+  connectButton.disabled = false;
+  disconnectButton.disabled = true;
+
+  initDataContainerMessage.innerHTML = 'Please connect EEC-IV-Reader';
+  loadingSpinner.style.display = 'none';
+  
+  initDataContainer.style.display = 'flex';
+  faultCodeDataContainer.style.display = 'none';
+  liveDataContainer.style.display = 'none';
+}
 
 async function serialConnect() {
   connectButton.disabled = true;
@@ -75,6 +95,7 @@ async function serialConnect() {
     console.log(exception);
     alert.show("An error occured while connecting"); 
     connectButton.disabled = false;
+    disconnectButton.disabled = true;
 
     initDataContainerMessage.innerHTML = 'Please connect EEC-IV-Reader';
     loadingSpinner.style.display = 'none';
@@ -84,6 +105,7 @@ async function serialConnect() {
     liveDataContainer.style.display = 'none';
   }, () => {
     console.log("Connected");
+    disconnectButton.disabled = false;
   });
 
   serial.onReaderOnline = () => {
