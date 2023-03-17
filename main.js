@@ -12,7 +12,6 @@ function handleSquirrelEvent() {
     return false;
   }
 
-  console.log("handling stuff");
   const ChildProcess = require('child_process');
   const path = require('path');
 
@@ -36,7 +35,6 @@ function handleSquirrelEvent() {
   };
 
   const squirrelEvent = process.argv[1];
-  console.log(squirrelEvent);
   switch (squirrelEvent) {
     case '--squirrel-install':
     case '--squirrel-updated':

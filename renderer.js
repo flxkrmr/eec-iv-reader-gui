@@ -90,6 +90,21 @@ async function serialConnect() {
   console.log("Connecting");
 
   const ports = await serial.getPorts();
+
+  if (ports.length == 0) {
+    alert.show("No ports found. Is Reader connected?"); 
+    connectButton.disabled = false;
+    disconnectButton.disabled = true;
+
+    initDataContainerMessage.innerHTML = 'Please connect EEC-IV Reader and click the Connect Button.';
+    loadingSpinner.style.display = 'none';
+    
+    initDataContainer.style.display = 'flex';
+    faultCodeDataContainer.style.display = 'none';
+    liveDataContainer.style.display = 'none';
+    return;
+  }
+  console.log(ports);
   // TODO check for ports, make select menu
   const port = ports[0];
 
