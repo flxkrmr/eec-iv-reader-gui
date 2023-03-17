@@ -230,14 +230,14 @@ async function serialConnect() {
     liveDataThrottleMode.innerHTML="" + eecIvDecoder.toThrottleModeRef(data.slice(10, 12)) + " - " + eecIvDecoder.toHexString(data.slice(10, 12));
     liveDataCoolantTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(12, 14)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(12, 14)) + " °C";
     liveDataAirTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(14, 16)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(14, 16)) + " °C";
-    liveDataIdleValve.innerHTML=eecIvDecoder.toHexString(data.slice(16, 18));
+    liveDataIdleValve.innerHTML="" + eecIvDecoder.toDec(data.slice(16, 18)) + " - " + eecIvDecoder.toHexString(data.slice(16, 18));
     liveDataAirFlowMeter.innerHTML="" + eecIvDecoder.toAirFlowMeterRef(data.slice(18, 20)) + " mV - " + eecIvDecoder.toHexString(data.slice(18, 20));
     liveDataEgr.innerHTML=eecIvDecoder.toHexString(data.slice(20, 22));
     liveDataInjectionPulse.innerHTML="" + eecIvDecoder.toInjectionPulseRef(data.slice(22, 24)) + " us - " + eecIvDecoder.toHexString(data.slice(22, 24));
     liveDataIgnitionTiming.innerHTML="" + eecIvDecoder.toIgnitionTimingRef(data.slice(24, 26)) + "° - " + eecIvDecoder.toHexString(data.slice(24, 26));
-    liveDataSpeed.innerHTML=eecIvDecoder.toHexString(data.slice(26, 28));
-    liveDataFuelVaporMode.innerHTML=eecIvDecoder.toHexString(data.slice(28, 30));
-    liveDataFuelPumpMode.innerHTML=eecIvDecoder.toHexString(data.slice(30, 32));
+    liveDataSpeed.innerHTML="" + eecIvDecoder.toSpeed(data.slice(26, 28)) + " kmh - " + eecIvDecoder.toHexString(data.slice(26, 28));
+    liveDataFuelVaporMode.innerHTML="" + eecIvDecoder.toVaporValveMode(data.slice(28, 30)) + " - " + eecIvDecoder.toDec(data.slice(28, 30)) + " - " + eecIvDecoder.toHexString(data.slice(28, 30));
+    liveDataFuelPumpMode.innerHTML="" + eecIvDecoder.toDec(data.slice(30, 32)) + " - " +eecIvDecoder.toHexString(data.slice(30, 32));
   }
 }
 
