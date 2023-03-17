@@ -2,6 +2,7 @@ const connectButton = document.getElementById('serialconnect');
 const initDataContainer = document.getElementById('init-data-container');
 const liveDataContainer = document.getElementById('live-data-container');
 const faultCodeDataContainer = document.getElementById('fault-code-data-container');
+let faultCodeType = 0;
 
 const alert = new Alert(document.getElementById('alert'));
 
@@ -108,6 +109,8 @@ async function serialConnect() {
       initDataContainer.style.display = 'none';
       faultCodeDataContainer.style.display = 'flex';
       liveDataContainer.style.display = 'none';
+
+      faultCodeType = type;
     } else if (type == 0x02) {
       alert.showAndFade("KOEO/KOER Test started...");
       loadingSpinner.style.display = 'block';
@@ -119,6 +122,8 @@ async function serialConnect() {
       initDataContainer.style.display = 'none';
       faultCodeDataContainer.style.display = 'flex';
       liveDataContainer.style.display = 'none';
+
+      faultCodeType = type;
     } else if (type == 0x03) {
       alert.showAndFade("Live Data Reading started...");
       loadingSpinner.style.display = 'block';
@@ -139,8 +144,13 @@ async function serialConnect() {
   serial.onFaultCodes = (data) => {
     const eecIvDecoder = new EecIvDecoder();
     faultCodeDataContainer.style.opacity = 1;
-    alert.showAndFade("Received Fault Codes");
     loadingSpinner.style.display = 'none';
+
+    if (faultCodeType == 0x02) {
+      alert.show("Received Fault Codes. Please turn Ignition on and off for further readings!");
+    } else {
+      alert.showAndFade("Received Fault Codes");
+    }
 
     eecIvDecoder.getAllFaultCodes(data).forEach((code, i) => {
       faultCodeFields[i].innerHTML = code;
