@@ -74,7 +74,7 @@ async function serialDisconnect() {
   connectButton.disabled = false;
   disconnectButton.disabled = true;
 
-  initDataContainerMessage.innerHTML = 'Please connect EEC-IV-Reader';
+  initDataContainerMessage.innerHTML = 'Please connect EEC-IV Reader and click the Connect Button.';
   loadingSpinner.style.display = 'none';
   
   initDataContainer.style.display = 'flex';
@@ -100,7 +100,7 @@ async function serialConnect() {
     connectButton.disabled = false;
     disconnectButton.disabled = true;
 
-    initDataContainerMessage.innerHTML = 'Please connect EEC-IV-Reader';
+    initDataContainerMessage.innerHTML = 'Please connect EEC-IV Reader and click the Connect Button.';
     loadingSpinner.style.display = 'none';
     
     initDataContainer.style.display = 'flex';
@@ -113,7 +113,7 @@ async function serialConnect() {
 
   serial.onReaderOnline = () => {
     alert.showAndFade("EEC-IV-Reader connected!"); 
-    initDataContainerMessage.innerHTML = 'Please connect EEC-IV Reader and click the Connect Button.';
+    initDataContainerMessage.innerHTML = 'Please select mode on EEC-IV-Reader';
     loadingSpinner.style.display = 'none';
   };
 
