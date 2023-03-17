@@ -58,7 +58,9 @@ const liveDataAirFlowMeter = document.getElementById('data-air-flow-meter');
 const liveDataEgr = document.getElementById('data-egr');
 const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
-const liveDataSensorPowerVoltage = document.getElementById('data-sensor-power-voltage');
+const liveDataSpeed = document.getElementById('data-speed');
+const liveDataFuelVaporMode = document.getElementById('data-fuel-vapor-mode');
+const liveDataFuelPumpMode = document.getElementById('data-fuel-pump-mode');
 
 connectButton.addEventListener('click', serialConnect);
 disconnectButton.addEventListener('click', serialDisconnect);
@@ -226,14 +228,16 @@ async function serialConnect() {
     liveDataThrottle.innerHTML="" + eecIvDecoder.toThrottlePositionRef(data.slice(6, 8)) + " mV - " + eecIvDecoder.toHexString(data.slice(6, 8));
     liveDataShortFuleCorrection.innerHTML="" + eecIvDecoder.toShortFuelCorrectionRef(data.slice(8, 10)) + " % - " + eecIvDecoder.toHexString(data.slice(8, 10));
     liveDataThrottleMode.innerHTML="" + eecIvDecoder.toThrottleModeRef(data.slice(10, 12)) + " - " + eecIvDecoder.toHexString(data.slice(10, 12));
-    liveDataCoolantTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(14, 16)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(14, 16)) + " °C - " + eecIvDecoder.toHexString(data.slice(12, 14));
-    liveDataAirTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(18, 20)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(18, 20)) + " °C - " + eecIvDecoder.toHexString(data.slice(16, 18));
-    liveDataIdleValve.innerHTML=eecIvDecoder.toHexString(data.slice(20, 22));
-    liveDataAirFlowMeter.innerHTML="" + eecIvDecoder.toAirFlowMeterRef(data.slice(22, 24)) + " mV - " + eecIvDecoder.toHexString(data.slice(22, 24));
-    liveDataEgr.innerHTML=eecIvDecoder.toHexString(data.slice(24, 26));
-    liveDataInjectionPulse.innerHTML="" + eecIvDecoder.toInjectionPulseRef(data.slice(26, 28)) + " us - " + eecIvDecoder.toHexString(data.slice(26, 28));
-    liveDataIgnitionTiming.innerHTML="" + eecIvDecoder.toIgnitionTimingRef(data.slice(28, 30)) + "° - " + eecIvDecoder.toHexString(data.slice(28, 30));
-    liveDataSensorPowerVoltage.innerHTML=eecIvDecoder.toHexString(data.slice(30, 32));
+    liveDataCoolantTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(12, 14)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(12, 14)) + " °C";
+    liveDataAirTemp.innerHTML="" + eecIvDecoder.toTemperature(data.slice(14, 16)) + " °C - " + eecIvDecoder.toTemperatureRef(data.slice(14, 16)) + " °C";
+    liveDataIdleValve.innerHTML=eecIvDecoder.toHexString(data.slice(16, 18));
+    liveDataAirFlowMeter.innerHTML="" + eecIvDecoder.toAirFlowMeterRef(data.slice(18, 20)) + " mV - " + eecIvDecoder.toHexString(data.slice(18, 20));
+    liveDataEgr.innerHTML=eecIvDecoder.toHexString(data.slice(20, 22));
+    liveDataInjectionPulse.innerHTML="" + eecIvDecoder.toInjectionPulseRef(data.slice(22, 24)) + " us - " + eecIvDecoder.toHexString(data.slice(22, 24));
+    liveDataIgnitionTiming.innerHTML="" + eecIvDecoder.toIgnitionTimingRef(data.slice(24, 26)) + "° - " + eecIvDecoder.toHexString(data.slice(24, 26));
+    liveDataSpeed.innerHTML=eecIvDecoder.toHexString(data.slice(26, 28));
+    liveDataFuelVaporMode.innerHTML=eecIvDecoder.toHexString(data.slice(28, 30));
+    liveDataFuelPumpMode.innerHTML=eecIvDecoder.toHexString(data.slice(30, 32));
   }
 }
 
