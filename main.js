@@ -1,5 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const electronDl = require('electron-dl');
+
+electronDl();
 
 
 if (handleSquirrelEvent()) {

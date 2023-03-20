@@ -203,6 +203,9 @@ async function serialConnect() {
     });
   }
 
+  // XXX
+  let liveDataDump = [];
+
   serial.onLiveData = (data) => {
     clearTimeout(liveDataTimeoutId);
     liveDataDot.classList.remove("go-red");
@@ -223,23 +226,28 @@ async function serialConnect() {
 
     const eecIvDecoder = new EecIvDecoder();
     liveData = eecIvDecoder.getAllLiveData(data);
-    console.log(liveData);
+    let liveDataDumpLine = {
+      time: Date.now(),
+      data: liveData,
+    }
+    liveDataDump.push(liveDataDumpLine);
+    console.log(liveDataDump);
     liveDataRpm.innerHTML=liveData.rpm;
     liveDataLambda.innerHTML=liveData.lambda;
     liveDataSupplyVoltage.innerHTML="" + liveData.supplyVoltage + " V";
-    liveDataThrottle.innerHTML="" + liveData.throttlePosition + " mV - " + liveData.throttlePositionHex;
-    liveDataShortFuleCorrection.innerHTML="" + liveData.shortFuelCorrection + " % - " + liveData.shortFuelCorrectionHex;
-    liveDataThrottleMode.innerHTML="" + liveData.throttleMode + " - " + liveData.throttleModeHex;
-    liveDataCoolantTemp.innerHTML="" + liveData.coolantTemp + " °C";
-    liveDataAirTemp.innerHTML="" + liveData.airTemp + " °C";
-    liveDataIdleValve.innerHTML="" + liveData.idleValve + " - " + liveData.idleValveHex;
-    liveDataAirFlowMeter.innerHTML="" + liveData.airFlowMeter + " mV - " + liveData.airFlowMeterHex;
-    liveDataEgr.innerHTML="" + liveData.egr + " - " + liveData.egrHex;
-    liveDataInjectionPulse.innerHTML="" + liveData.injectionPulse + " us";
+    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count (" + liveData.throttlePosition + " mV)";
+    liveDataShortFuleCorrection.innerHTML="" + liveData.shortFuelCorrection + " %; " + liveData.shortFuelCorrectionHex;
+    liveDataThrottleMode.innerHTML="" + liveData.throttleMode;
+    liveDataCoolantTemp.innerHTML="" + liveData.coolantTemp + " °C (" + liveData.coolantTempRef + " °C)";
+    liveDataAirTemp.innerHTML="" + liveData.airTemp + " °C (" + liveData.airTempRef + " °C)";
+    liveDataIdleValve.innerHTML="" + liveData.idleValve + " EEC-IV count";
+    liveDataAirFlowMeter.innerHTML="" + liveData.airFlowMeter + " mV (" + liveData.airFlowMeterRef + " mV)";
+    liveDataEgr.innerHTML="" + liveData.egr + " A/D count";
+    liveDataInjectionPulse.innerHTML="" + liveData.injectionPulseClk + " clock ticks - " + liveData.injectionPulseRef + " us";
     liveDataIgnitionTiming.innerHTML="" + liveData.ignitionTiming + "°";
-    liveDataSpeed.innerHTML="" + liveData.speed + " km/h";
-    liveDataFuelVaporMode.innerHTML="" + liveData.fuelVaporMode + " - " + liveData.fuelVaporModeDec + " - " + liveData.fuelVaporModeHex;
-    liveDataFuelPumpMode.innerHTML="" + liveData.fuelPumpMode + " - " + liveData.fuelPumpModeHex;
+    liveDataSpeed.innerHTML="" + liveData.speedKmh + " km/h; " + liveData.speedMph + " mph (" + liveData.speedDec + " kmh)";
+    liveDataFuelVaporMode.innerHTML="" +  liveData.fuelVaporModeHex;
+    liveDataFuelPumpMode.innerHTML="" +  liveData.fuelPumpModeHex;
   }
 }
 
