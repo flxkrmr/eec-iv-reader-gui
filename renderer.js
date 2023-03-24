@@ -46,21 +46,16 @@ const faultCodeDescFields = [
 ]
 
 const liveDataRpm = document.getElementById('data-rpm');
-const liveDataLambda = document.getElementById('data-lambda');
 const liveDataSupplyVoltage = document.getElementById('data-supply-voltage');
 const liveDataThrottle = document.getElementById('data-throttle');
-const liveDataShortFuleCorrection = document.getElementById('data-short-fuel-correction');
 const liveDataThrottleMode = document.getElementById('data-throttle-mode');
 const liveDataCoolantTemp = document.getElementById('data-coolant-temp');
 const liveDataAirTemp = document.getElementById('data-air-temp');
 const liveDataIdleValve = document.getElementById('data-idle-valve');
-const liveDataAirFlowMeter = document.getElementById('data-air-flow-meter');
 const liveDataEgr = document.getElementById('data-egr');
 const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
 const liveDataSpeed = document.getElementById('data-speed');
-const liveDataFuelVaporMode = document.getElementById('data-fuel-vapor-mode');
-const liveDataFuelPumpMode = document.getElementById('data-fuel-pump-mode');
 
 connectButton.addEventListener('click', serialConnect);
 disconnectButton.addEventListener('click', serialDisconnect);
@@ -232,22 +227,18 @@ async function serialConnect() {
     }
     liveDataDump.push(liveDataDumpLine);
     console.log(liveDataDump);
+
     liveDataRpm.innerHTML=liveData.rpm;
-    liveDataLambda.innerHTML=liveData.lambda;
-    liveDataSupplyVoltage.innerHTML="" + liveData.supplyVoltage + " V";
-    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count (" + liveData.throttlePosition + " mV)";
-    liveDataShortFuleCorrection.innerHTML="" + liveData.shortFuelCorrection + " %; " + liveData.shortFuelCorrectionHex;
+    liveDataSupplyVoltage.innerHTML="" + (liveData.supplyVoltage != null ? liveData.supplyVoltage.toFixed(2) : liveData.supplyVoltage) + " V";
+    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count";
     liveDataThrottleMode.innerHTML="" + liveData.throttleMode;
-    liveDataCoolantTemp.innerHTML="" + liveData.coolantTemp + " °C (" + liveData.coolantTempRef + " °C)";
-    liveDataAirTemp.innerHTML="" + liveData.airTemp + " °C (" + liveData.airTempRef + " °C)";
-    liveDataIdleValve.innerHTML="" + liveData.idleValve + " EEC-IV count";
-    liveDataAirFlowMeter.innerHTML="" + liveData.airFlowMeter + " mV (" + liveData.airFlowMeterRef + " mV)";
+    liveDataCoolantTemp.innerHTML="" + (liveData.coolantTemp != null ? liveData.coolantTemp.toFixed(2) : liveData.coolantTemp) + " °C";
+    liveDataAirTemp.innerHTML="" + (liveData.airTemp != null ? liveData.airTemp.toFixed(2) : liveData.airTemp) + " °C";
+    liveDataIdleValve.innerHTML="" + liveData.idleValve + " A/D count";
     liveDataEgr.innerHTML="" + liveData.egr + " A/D count";
     liveDataInjectionPulse.innerHTML="" + liveData.injectionPulseClk + " clock ticks - " + liveData.injectionPulseRef + " us";
     liveDataIgnitionTiming.innerHTML="" + liveData.ignitionTiming + "°";
-    liveDataSpeed.innerHTML="" + liveData.speedKmh + " km/h; " + liveData.speedMph + " mph (" + liveData.speedDec + " kmh)";
-    liveDataFuelVaporMode.innerHTML="" +  liveData.fuelVaporModeHex;
-    liveDataFuelPumpMode.innerHTML="" +  liveData.fuelPumpModeHex;
+    liveDataSpeed.innerHTML="" + liveData.speedKmh + " km/h; " + liveData.speedMph + " mph";
   }
 }
 
