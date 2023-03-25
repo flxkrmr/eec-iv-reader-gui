@@ -20,8 +20,10 @@ npm run start
 ```
 npm run make
 ```
-### Publish Release draft to Github
+### Create a tag Publish Release draft to Github
 ```
+git tag -a v0.3.5 -m "v0.3.5"
+git push origin v0.3.5
 set GITHUB_TOKEN=xxx
 npm run publish
 ```

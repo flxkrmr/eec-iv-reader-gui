@@ -56,6 +56,9 @@ const liveDataEgr = document.getElementById('data-egr');
 const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
 const liveDataSpeed = document.getElementById('data-speed');
+const liveDataSpeedUnfiltered = document.getElementById('data-speed-unfiltered');
+const liveDataMap = document.getElementById('data-map');
+const liveDataBp = document.getElementById('data-bp');
 
 connectButton.addEventListener('click', serialConnect);
 disconnectButton.addEventListener('click', serialDisconnect);
@@ -220,7 +223,8 @@ async function serialConnect() {
     loadingSpinner.style.display = 'none';
 
     const eecIvDecoder = new EecIvDecoder();
-    liveData = eecIvDecoder.getAllLiveData(data);
+
+    let liveData = eecIvDecoder.getAllLiveData(data);
     let liveDataDumpLine = {
       time: Date.now(),
       data: liveData,
@@ -230,7 +234,7 @@ async function serialConnect() {
 
     liveDataRpm.innerHTML=liveData.rpm;
     liveDataSupplyVoltage.innerHTML="" + (liveData.supplyVoltage != null ? liveData.supplyVoltage.toFixed(2) : liveData.supplyVoltage) + " V";
-    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count";
+    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count; min: " + liveData.ratch;
     liveDataThrottleMode.innerHTML="" + liveData.throttleMode;
     liveDataCoolantTemp.innerHTML="" + (liveData.coolantTemp != null ? liveData.coolantTemp.toFixed(2) : liveData.coolantTemp) + " °C";
     liveDataAirTemp.innerHTML="" + (liveData.airTemp != null ? liveData.airTemp.toFixed(2) : liveData.airTemp) + " °C";
@@ -239,6 +243,10 @@ async function serialConnect() {
     liveDataInjectionPulse.innerHTML="" + liveData.injectionPulseClk + " clock ticks - " + liveData.injectionPulseRef + " us";
     liveDataIgnitionTiming.innerHTML="" + liveData.ignitionTiming + "°";
     liveDataSpeed.innerHTML="" + liveData.speedKmh + " km/h; " + liveData.speedMph + " mph";
+    liveDataSpeedUnfiltered.innerHTML = "" + liveData.speedUnfiltered + " mph";
+    liveDataMap.innerHTML = "" + liveData.manifoldAbsolutePressure + " inHp; " + liveData.manifoldAbsolutePressureMilliBar + " mBar";
+    liveDataBp.innerHTML = "" + liveData.barometricPressure + " inHp; " + liveData.barometricPressureMilliBar + " mBar";
+
   }
 }
 
