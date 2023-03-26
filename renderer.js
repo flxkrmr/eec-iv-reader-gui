@@ -51,14 +51,15 @@ const liveDataThrottle = document.getElementById('data-throttle');
 const liveDataThrottleMode = document.getElementById('data-throttle-mode');
 const liveDataCoolantTemp = document.getElementById('data-coolant-temp');
 const liveDataAirTemp = document.getElementById('data-air-temp');
-const liveDataIdleValve = document.getElementById('data-idle-valve');
 const liveDataEgr = document.getElementById('data-egr');
+const liveDataLambda = document.getElementById('data-lambda');
+const liveDataEgo = document.getElementById('data-ego');
 const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
 const liveDataSpeed = document.getElementById('data-speed');
-const liveDataSpeedUnfiltered = document.getElementById('data-speed-unfiltered');
-const liveDataMap = document.getElementById('data-map');
-const liveDataBp = document.getElementById('data-bp');
+const liveDataBarometricPressure = document.getElementById('data-bp');
+const liveDataCalibrationVoltage = document.getElementById('data-calibration-voltage');
+const liveDataTransmissionOil = document.getElementById('data-transmission-oil');
 
 connectButton.addEventListener('click', serialConnect);
 disconnectButton.addEventListener('click', serialDisconnect);
@@ -201,7 +202,12 @@ async function serialConnect() {
     });
   }
 
-  // XXX
+  function updateGui(value, updateHandler) {
+    if (value !== undefined && value !== null) {
+      updateHandler(value);
+    }    
+  }
+
   let liveDataDump = [];
 
   serial.onLiveData = (data) => {
@@ -225,27 +231,33 @@ async function serialConnect() {
     const eecIvDecoder = new EecIvDecoder();
 
     let liveData = eecIvDecoder.getAllLiveData(data);
+    console.log(liveData);
+
     let liveDataDumpLine = {
       time: Date.now(),
       data: liveData,
     }
     liveDataDump.push(liveDataDumpLine);
+
     console.log(liveDataDump);
 
-    liveDataRpm.innerHTML=liveData.rpm;
-    liveDataSupplyVoltage.innerHTML="" + (liveData.supplyVoltage != null ? liveData.supplyVoltage.toFixed(2) : liveData.supplyVoltage) + " V";
-    liveDataThrottle.innerHTML="" + liveData.throttlePositionAD + " A/D count; min: " + liveData.ratch;
-    liveDataThrottleMode.innerHTML="" + liveData.throttleMode;
-    liveDataCoolantTemp.innerHTML="" + (liveData.coolantTemp != null ? liveData.coolantTemp.toFixed(2) : liveData.coolantTemp) + " °C";
-    liveDataAirTemp.innerHTML="" + (liveData.airTemp != null ? liveData.airTemp.toFixed(2) : liveData.airTemp) + " °C";
-    liveDataIdleValve.innerHTML="" + liveData.idleValve + " A/D count";
-    liveDataEgr.innerHTML="" + liveData.egr + " A/D count";
-    liveDataInjectionPulse.innerHTML="" + liveData.injectionPulseClk + " clock ticks - " + liveData.injectionPulseRef + " us";
-    liveDataIgnitionTiming.innerHTML="" + liveData.ignitionTiming + "°";
-    liveDataSpeed.innerHTML="" + liveData.speedKmh + " km/h; " + liveData.speedMph + " mph";
-    liveDataSpeedUnfiltered.innerHTML = "" + liveData.speedUnfiltered + " mph";
-    liveDataMap.innerHTML = "" + liveData.manifoldAbsolutePressure + " inHp; " + liveData.manifoldAbsolutePressureMilliBar + " mBar";
-    liveDataBp.innerHTML = "" + liveData.barometricPressure + " inHp; " + liveData.barometricPressureMilliBar + " mBar";
+    updateGui(liveData.rpm, (rpm) => liveDataRpm.innerHTML = rpm);
+    updateGui(liveData.supplyVoltage, (supplyVoltage) => liveDataSupplyVoltage.innerHTML = supplyVoltage.toFixed(2) + " V");
+    updateGui(liveData.throttlePosition, (throttlePosition) => liveDataThrottle.innerHTML = throttlePosition + " A/D count");
+    updateGui(liveData.throttleMode, (throttleMode) => liveDataThrottleMode.innerHTML = throttleMode);
+    updateGui(liveData.actCelsius, (actCelsius) => liveDataAirTemp.innerHTML = actCelsius.toFixed(2) + " °C");
+    updateGui(liveData.ectCelsius, (ectCelsius) => liveDataCoolantTemp.innerHTML = ectCelsius.toFixed(2) + " °C");
+    updateGui(liveData.egr, (egr) => liveDataEgr.innerHTML = egr + " A/D count");
+    updateGui(liveData.fuelPulsewith, (fuelPulsewith) => liveDataInjectionPulse.innerHTML = fuelPulsewith + " clock ticks");
+    updateGui(liveData.totalSparkAdvance, (totalSparkAdvance) => liveDataIgnitionTiming.innerHTML = totalSparkAdvance + "°");
+    updateGui(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed + " km/h");
+    updateGui(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda);
+    updateGui(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D count");
+    updateGui(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
+    updateGui(liveData.calibrationInputVoltage, (voltage) => liveDataCalibrationVoltage.innerHTML = voltage + " A/D count");
+    updateGui(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOil.innerHTML = temp + " A/D count");
+
+    return;
 
   }
 }
