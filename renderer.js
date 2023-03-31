@@ -50,16 +50,47 @@ const liveDataSupplyVoltage = document.getElementById('data-supply-voltage');
 const liveDataThrottle = document.getElementById('data-throttle');
 const liveDataThrottleMode = document.getElementById('data-throttle-mode');
 const liveDataCoolantTemp = document.getElementById('data-coolant-temp');
+const liveDataCoolantTempSensor = document.getElementById('data-coolant-temp-sensor');
 const liveDataAirTemp = document.getElementById('data-air-temp');
+const liveDataAirTempSensor = document.getElementById('data-air-temp-sensor');
 const liveDataEgr = document.getElementById('data-egr');
+const liveDataEgrDutyCycle = document.getElementById('data-egr-duty-cycle');
 const liveDataLambda = document.getElementById('data-lambda');
 const liveDataEgo = document.getElementById('data-ego');
-const liveDataInjectionPulse = document.getElementById('data-injection-pulse');
+const liveDataFuelPulsewidth = document.getElementById('data-fuel-pulsewidth');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
 const liveDataSpeed = document.getElementById('data-speed');
+const liveDataSpeedUnfiltered = document.getElementById('data-speed-unfiltered');
+const liveDataAirCharge = document.getElementById('data-air-charge');
 const liveDataBarometricPressure = document.getElementById('data-bp');
 const liveDataCalibrationVoltage = document.getElementById('data-calibration-voltage');
 const liveDataTransmissionOil = document.getElementById('data-transmission-oil');
+const liveDataScap = document.getElementById('data-scap');
+const liveDataAdaptiveFuelCorrection = document.getElementById('data-adaptive-fuel-correction');
+const liveDataIdleSpeed = document.getElementById('data-idle-speed');
+const liveDataDesiredRpm = document.getElementById('data-desired-rpm');
+const liveDataRatch = document.getElementById('data-ratch');
+const liveDataTimeSinceStartup = document.getElementById('data-time-since-startup');
+const liveDataOcc = document.getElementById('data-occ');
+const liveDataNeutralDriveInput = document.getElementById('data-neutral-drive-input');
+const liveDataConverterClutch = document.getElementById('data-converter-clutch');
+const liveDataCommandGear = document.getElementById('data-command-gear');
+const liveDataEtvMonitorVoltage = document.getElementById('data-etv-monitor-voltage');
+const liveDataEpcPressure = document.getElementById('data-epc-pressure');
+const liveDataTransmissionOilTemperature = document.getElementById('data-transmission-oil-temperature');
+const liveDataPrndlPosition = document.getElementById('data-prndl-position');
+const liveDataNotUsed0A = document.getElementById('data-not-used-0A');
+const liveDataNotUsed14 = document.getElementById('data-not-used-14');
+const liveDataNotUsed16 = document.getElementById('data-not-used-16');
+const liveDataNotUsed19 = document.getElementById('data-not-used-19');
+const liveDataNotUsed1C = document.getElementById('data-not-used-1C');
+const liveDataNotUsed1D = document.getElementById('data-not-used-1D');
+const liveDataNotUsed26 = document.getElementById('data-not-used-26');
+const liveDataNotUsed29 = document.getElementById('data-not-used-29');
+const liveDataNotUsed2C = document.getElementById('data-not-used-2C');
+const liveDataNotUsed31 = document.getElementById('data-not-used-31');
+const liveDataNotUsed33 = document.getElementById('data-not-used-33');
+const liveDataNotUsed34 = document.getElementById('data-not-used-34');
 
 connectButton.addEventListener('click', serialConnect);
 disconnectButton.addEventListener('click', serialDisconnect);
@@ -202,7 +233,7 @@ async function serialConnect() {
     });
   }
 
-  function updateGui(value, updateHandler) {
+  function updateGuiValue(value, updateHandler) {
     if (value !== undefined && value !== null) {
       updateHandler(value);
     }    
@@ -241,21 +272,53 @@ async function serialConnect() {
 
     console.log(liveDataDump);
 
-    updateGui(liveData.rpm, (rpm) => liveDataRpm.innerHTML = rpm);
-    updateGui(liveData.supplyVoltage, (supplyVoltage) => liveDataSupplyVoltage.innerHTML = supplyVoltage.toFixed(2) + " V");
-    updateGui(liveData.throttlePosition, (throttlePosition) => liveDataThrottle.innerHTML = throttlePosition + " A/D count");
-    updateGui(liveData.throttleMode, (throttleMode) => liveDataThrottleMode.innerHTML = throttleMode);
-    updateGui(liveData.actCelsius, (actCelsius) => liveDataAirTemp.innerHTML = actCelsius.toFixed(2) + " °C");
-    updateGui(liveData.ectCelsius, (ectCelsius) => liveDataCoolantTemp.innerHTML = ectCelsius.toFixed(2) + " °C");
-    updateGui(liveData.egr, (egr) => liveDataEgr.innerHTML = egr + " A/D count");
-    updateGui(liveData.fuelPulsewith, (fuelPulsewith) => liveDataInjectionPulse.innerHTML = fuelPulsewith + " clock ticks");
-    updateGui(liveData.totalSparkAdvance, (totalSparkAdvance) => liveDataIgnitionTiming.innerHTML = totalSparkAdvance + "°");
-    updateGui(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed + " km/h");
-    updateGui(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda);
-    updateGui(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D count");
-    updateGui(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
-    updateGui(liveData.calibrationInputVoltage, (voltage) => liveDataCalibrationVoltage.innerHTML = voltage + " A/D count");
-    updateGui(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOil.innerHTML = temp + " A/D count");
+    updateGuiValue(liveData.rpm, (rpm) => liveDataRpm.innerHTML = rpm);
+    updateGuiValue(liveData.supplyVoltage, (supplyVoltage) => liveDataSupplyVoltage.innerHTML = supplyVoltage.toFixed(2) + " V");
+    updateGuiValue(liveData.throttlePosition, (throttlePosition) => liveDataThrottle.innerHTML = throttlePosition + " A/D count");
+    updateGuiValue(liveData.throttleMode, (throttleMode) => liveDataThrottleMode.innerHTML = throttleMode);
+    updateGuiValue(liveData.actCelsius, (actCelsius) => liveDataAirTemp.innerHTML = actCelsius.toFixed(2) + " °C");
+    updateGuiValue(liveData.act, (act) => liveDataAirTempSensor.innerHTML = act + " A/D count");
+    updateGuiValue(liveData.ectCelsius, (ectCelsius) => liveDataCoolantTemp.innerHTML = ectCelsius.toFixed(2) + " °C");
+    updateGuiValue(liveData.ect, (ect) => liveDataCoolantTempSensor.innerHTML = ect + " A/D count");
+    updateGuiValue(liveData.egr, (egr) => liveDataEgr.innerHTML = egr + " A/D count");
+    updateGuiValue(liveData.egrDutyCycle, (egr) => liveDataEgrDutyCycle.innerHTML = egr + " A/D count");
+    updateGuiValue(liveData.fuelPulsewidth, (fuelPulsewidth) => liveDataFuelPulsewidth.innerHTML = fuelPulsewidth + " clock ticks");
+    updateGuiValue(liveData.totalSparkAdvance, (totalSparkAdvance) => liveDataIgnitionTiming.innerHTML = totalSparkAdvance + "°");
+    updateGuiValue(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed + " km/h");
+    updateGuiValue(liveData.speedUnfiltered, (speed) => liveDataSpeedUnfiltered.innerHTML = speed + " km/h");
+    updateGuiValue(liveData.airCharge, (airCharge) => liveDataAirCharge.innerHTML = airCharge + " %");
+    updateGuiValue(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda);
+    updateGuiValue(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D count");
+    updateGuiValue(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
+    updateGuiValue(liveData.calibrationInputVoltage, (voltage) => liveDataCalibrationVoltage.innerHTML = voltage + " A/D count");
+    updateGuiValue(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOil.innerHTML = temp + " A/D count");
+    updateGuiValue(liveData.scap, (scap) => liveDataScap.innerHTML = scap + " A/D count");
+    updateGuiValue(liveData.idleSpeedDutyCycle, (dutyCycle) => liveDataIdleSpeed.innerHTML = dutyCycle + " A/D count");
+    updateGuiValue(liveData.adaptiveFuelCorrection, (correction) => liveDataAdaptiveFuelCorrection.innerHTML = correction + " A/F");
+    updateGuiValue(liveData.desiredRpm, (rpm) => liveDataDesiredRpm.innerHTML = rpm);
+    updateGuiValue(liveData.ratch, (ratch) => liveDataRatch.innerHTML = ratch);
+    updateGuiValue(liveData.timeSinceStartup, (time) => liveDataTimeSinceStartup.innerHTML = time + " s");
+    updateGuiValue(liveData.occ, (occ) => liveDataOcc.innerHTML = occ + " A/D Count");
+    updateGuiValue(liveData.neutralDriveInput, (input) => liveDataNeutralDriveInput.innerHTML = input + " A/D Count");
+    updateGuiValue(liveData.converterClutch, (clutch) => liveDataConverterClutch.innerHTML = clutch + " %");
+    updateGuiValue(liveData.commandGear, (gear) => liveDataCommandGear.innerHTML = gear);
+    updateGuiValue(liveData.etvMonitorVoltage, (voltage) => liveDataEtvMonitorVoltage.innerHTML = voltage + " V");
+    updateGuiValue(liveData.epcPressure, (pressure) => liveDataEpcPressure.innerHTML = pressure + " p.s.i");
+    updateGuiValue(liveData.transmissionOilTemperature, (temperature) => liveDataTransmissionOilTemperature.innerHTML = temperature);
+    updateGuiValue(liveData.prndlPosition, (position) => liveDataPrndlPosition.innerHTML = position);
+    updateGuiValue(liveData.notUsed0A , (notUsed) => liveDataNotUsed0A.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed14 , (notUsed) => liveDataNotUsed14.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed16 , (notUsed) => liveDataNotUsed16.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed19 , (notUsed) => liveDataNotUsed19.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed1C , (notUsed) => liveDataNotUsed1C.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed1D , (notUsed) => liveDataNotUsed1D.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed26 , (notUsed) => liveDataNotUsed26.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed29 , (notUsed) => liveDataNotUsed29.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed2C , (notUsed) => liveDataNotUsed2C.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed31 , (notUsed) => liveDataNotUsed31.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed33 , (notUsed) => liveDataNotUsed33.innerHTML = notUsed);
+    updateGuiValue(liveData.notUsed34 , (notUsed) => liveDataNotUsed34.innerHTML = notUsed);
+
 
     return;
 
