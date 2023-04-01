@@ -19,7 +19,7 @@
         </div>
       </div>
 
-      <div class="row border data-container" id="init-data-container">
+      <div class="row border data-container overflow-auto" id="init-data-container">
         <div class="col">
           <div id="init-data-container-message" class="text-center">
             Please connect EEC-IV Reader and click the Connect Button.
@@ -27,7 +27,7 @@
         </div>
       </div>
 
-      <div class="row border data-container" id="fault-code-data-container">
+      <div class="row border data-container overflow-auto" id="fault-code-data-container">
         <div class="col">
           <h3>
             Fault Codes
@@ -106,199 +106,321 @@
         </div>
       </div>
 
-      <div class="row border data-container" id="live-data-container">
+      <div class="row border data-container overflow-auto" id="live-data-container">
         <div class="col">
           <h3>
             Live Data <span id="live-data-dot" class="dot"></span>
           </h3>
-          <table class="table table-sm data-table">
-            <tbody>
-              <tr>
-                <td class="data-type">RPM</td>
-                <td id="data-rpm">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Throttle Position</td>
-                <td id="data-throttle">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Throttle Mode</td>
-                <td id="data-throttle-mode">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Supply Voltage</td>
-                <td id="data-supply-voltage">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Coolant Temperature</td>
-                <td id="data-coolant-temp">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Coolant Temperature Sensor</td>
-                <td id="data-coolant-temp-sensor">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Air Temperature</td>
-                <td id="data-air-temp">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Air Temperature Sensor</td>
-                <td id="data-air-temp-sensor">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">EGR Differential Pressure</td>
-                <td id="data-egr">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">EGR Duty Cycle</td>
-                <td id="data-egr-duty-cycle">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Lambda</td>
-                <td id="data-lambda">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">EGO</td>
-                <td id="data-ego">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Injection Pulse (Fuel Pulsewidth)</td>
-                <td id="data-fuel-pulsewidth">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Ignition Timing</td>
-                <td id="data-ignition-timing">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Speed</td>
-                <td id="data-speed">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Normalized air charge value</td>
-                <td id="data-air-charge">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Speed Unfiltered</td>
-                <td id="data-speed-unfiltered">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Barometric Pressure</td>
-                <td id="data-bp">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Calibration Voltage</td>
-                <td id="data-calibration-voltage">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Transmission Oil Temperature</td>
-                <td id="data-transmission-oil">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Idle Speed Control Duty Cycle</td>
-                <td id="data-idle-speed">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">SCAP Sensor Frequency</td>
-                <td id="data-scap">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Adaptive fuel correction</td>
-                <td id="data-adaptive-fuel-correction">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Desired RPM</td>
-                <td id="data-desired-rpm">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Lowest filtered throttle position</td>
-                <td id="data-ratch">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Time since Startup</td>
-                <td id="data-time-since-startup">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">OCC Input Level</td>
-                <td id="data-occ">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Neutral / Drive Input</td>
-                <td id="data-neutral-drive-input">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Converter Clutch</td>
-                <td id="data-converter-clutch">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Command Gear</td>
-                <td id="data-command-gear">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">ETV Monitor Voltage</td>
-                <td id="data-etv-monitor-voltage">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">EPC Pressure</td>
-                <td id="data-epc-pressure">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Transmission Oil Temperature</td>
-                <td id="data-transmission-oil-temperature">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">PRNDL Position</td>
-                <td id="data-prndl-position">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x0A)</td>
-                <td id="data-not-used-0A">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x14)</td>
-                <td id="data-not-used-14">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x16)</td>
-                <td id="data-not-used-16">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x19)</td>
-                <td id="data-not-used-19">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x1C)</td>
-                <td id="data-not-used-1C">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x1D)</td>
-                <td id="data-not-used-1D">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x26)</td>
-                <td id="data-not-used-26">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x29)</td>
-                <td id="data-not-used-29">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x2C)</td>
-                <td id="data-not-used-2C">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x31)</td>
-                <td id="data-not-used-31">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x33)</td>
-                <td id="data-not-used-33">-</td>
-              </tr>
-              <tr>
-                <td class="data-type">Unknown (0x34)</td>
-                <td id="data-not-used-34">-</td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="container-fluid">
+            <div class="row border-bottom">
+              <div class="col">
+                RPM
+              </div>
+              <div class="col" id="data-rpm">
+                -
+              </div>
+              <div class="col">
+                Throttle Position
+              </div>
+              <div class="col" id="data-throttle">
+                -
+              </div>
+              <div class="col">
+                Throttle Mode
+              </div>
+              <div class="col" id="data-throttle-mode">
+                -
+              </div>
+              <div class="col">
+                Supply Voltage
+              </div>
+              <div class="col" id="data-supply-voltage">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Coolant Temperature
+              </div>
+              <div class="col" id="data-coolant-temp">
+                -
+              </div>
+              <div class="col">
+                Coolant Sensor
+              </div>
+              <div class="col" id="data-coolant-temp-sensor">
+                -
+              </div>
+              <div class="col">
+                Intake Air Temperature
+              </div>
+              <div class="col" id="data-air-temp">
+                -
+              </div>
+              <div class="col">
+                Intake Air Sensor
+              </div>
+              <div class="col" id="data-air-temp-sensor">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                EGR Differential Pressure
+              </div>
+              <div class="col" id="data-egr">
+                -
+              </div>
+              <div class="col">
+                EGR Duty Cycle
+              </div>
+              <div class="col" id="data-egr-duty-cycle">
+                -
+              </div>
+              <div class="col">
+                Lambda
+              </div>
+              <div class="col" id="data-lambda">
+                -
+              </div>
+              <div class="col">
+                EGO
+              </div>
+              <div class="col" id="data-ego">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Injection Pulse (Fuel Pulsewidth)
+              </div>
+              <div class="col" id="data-fuel-pulsewidth">
+                -
+              </div>
+              <div class="col">
+                Ignition Timing
+              </div>
+              <div class="col" id="data-ignition-timing">
+                -
+              </div>
+              <div class="col">
+                Speed
+              </div>
+              <div class="col" id="data-speed">
+                -
+              </div>
+              <div class="col">
+                Normalized Air Charge Value
+              </div>
+              <div class="col" id="data-air-charge">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Speed unfiltered
+              </div>
+              <div class="col" id="data-speed-unfiltered">
+                -
+              </div>
+              <div class="col">
+                Barometric Pressure
+              </div>
+              <div class="col" id="data-bp">
+                -
+              </div>
+              <div class="col">
+                MAP
+              </div>
+              <div class="col" id="data-map">
+                -
+              </div>
+              <div class="col">
+                Calibration Voltage
+              </div>
+              <div class="col" id="data-calibration-voltage">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Transmission Oil Temperature
+              </div>
+              <div class="col" id="data-transmission-oil-temperature">
+                -
+              </div>
+              <div class="col">
+                Idle Speed Duty Cycle
+              </div>
+              <div class="col" id="data-idle-speed">
+                -
+              </div>
+              <div class="col">
+                SCAP Sensor Frequency
+              </div>
+              <div class="col" id="data-scap">
+                -
+              </div>
+              <div class="col">
+                Adaptive Fuel Correction
+              </div>
+              <div class="col" id="data-adaptive-fuel-correction">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Desired RPM
+              </div>
+              <div class="col" id="data-desired-rpm">
+                -
+              </div>
+              <div class="col">
+                Lowest filtered Throttle Position
+              </div>
+              <div class="col" id="data-ratch">
+                -
+              </div>
+              <div class="col">
+                Time since Startup
+              </div>
+              <div class="col" id="data-time-since-startup">
+                -
+              </div>
+              <div class="col">
+                OCC Input Level
+              </div>
+              <div class="col" id="data-occ">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Neutral/Drive Input
+              </div>
+              <div class="col" id="data-neutral-drive-input">
+                -
+              </div>
+              <div class="col">
+                Converter Clutch
+              </div>
+              <div class="col" id="data-converter-clutch">
+                -
+              </div>
+              <div class="col">
+                Command Gear
+              </div>
+              <div class="col" id="data-command-gear">
+                -
+              </div>
+              <div class="col">
+                ETV Monitor Voltage
+              </div>
+              <div class="col" id="data-etv-monitor-voltage">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                EPC Pressure
+              </div>
+              <div class="col" id="data-epc-pressure">
+                -
+              </div>
+              <div class="col">
+                PRNDL Position
+              </div>
+              <div class="col" id="data-prndl-position">
+                -
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Unknown (0x0A)
+              </div>
+              <div class="col" id="data-not-used-0A">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x14)
+              </div>
+              <div class="col" id="data-not-used-14">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x16)
+              </div>
+              <div class="col" id="data-not-used-16">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x19)
+              </div>
+              <div class="col" id="data-not-used-19">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Unknown (0x1C)
+              </div>
+              <div class="col" id="data-not-used-1C">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x1D)
+              </div>
+              <div class="col" id="data-not-used-1D">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x26)
+              </div>
+              <div class="col" id="data-not-used-26">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x29)
+              </div>
+              <div class="col" id="data-not-used-29">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col">
+                Unknown (0x2C)
+              </div>
+              <div class="col" id="data-not-used-2C">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x31)
+              </div>
+              <div class="col" id="data-not-used-31">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x33)
+              </div>
+              <div class="col" id="data-not-used-33">
+                -
+              </div>
+              <div class="col">
+                Unknown (0x34)
+              </div>
+              <div class="col" id="data-not-used-34">
+                -
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

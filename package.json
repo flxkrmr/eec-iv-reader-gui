@@ -1,6 +1,6 @@
 {
   "name": "eec-iv-reader-ui",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "GUI for EEC IV Reader",
   "main": "main.js",
   "repository": {

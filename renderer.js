@@ -64,7 +64,7 @@ const liveDataSpeedUnfiltered = document.getElementById('data-speed-unfiltered')
 const liveDataAirCharge = document.getElementById('data-air-charge');
 const liveDataBarometricPressure = document.getElementById('data-bp');
 const liveDataCalibrationVoltage = document.getElementById('data-calibration-voltage');
-const liveDataTransmissionOil = document.getElementById('data-transmission-oil');
+const liveDataTransmissionOilTemperature = document.getElementById('data-transmission-oil-temperature');
 const liveDataScap = document.getElementById('data-scap');
 const liveDataAdaptiveFuelCorrection = document.getElementById('data-adaptive-fuel-correction');
 const liveDataIdleSpeed = document.getElementById('data-idle-speed');
@@ -77,7 +77,6 @@ const liveDataConverterClutch = document.getElementById('data-converter-clutch')
 const liveDataCommandGear = document.getElementById('data-command-gear');
 const liveDataEtvMonitorVoltage = document.getElementById('data-etv-monitor-voltage');
 const liveDataEpcPressure = document.getElementById('data-epc-pressure');
-const liveDataTransmissionOilTemperature = document.getElementById('data-transmission-oil-temperature');
 const liveDataPrndlPosition = document.getElementById('data-prndl-position');
 const liveDataNotUsed0A = document.getElementById('data-not-used-0A');
 const liveDataNotUsed14 = document.getElementById('data-not-used-14');
@@ -291,7 +290,7 @@ async function serialConnect() {
     updateGuiValue(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D count");
     updateGuiValue(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
     updateGuiValue(liveData.calibrationInputVoltage, (voltage) => liveDataCalibrationVoltage.innerHTML = voltage + " A/D count");
-    updateGuiValue(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOil.innerHTML = temp + " A/D count");
+    updateGuiValue(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOilTemperature.innerHTML = temp + " A/D count");
     updateGuiValue(liveData.scap, (scap) => liveDataScap.innerHTML = scap + " A/D count");
     updateGuiValue(liveData.idleSpeedDutyCycle, (dutyCycle) => liveDataIdleSpeed.innerHTML = dutyCycle + " A/D count");
     updateGuiValue(liveData.adaptiveFuelCorrection, (correction) => liveDataAdaptiveFuelCorrection.innerHTML = correction + " A/F");
@@ -304,7 +303,6 @@ async function serialConnect() {
     updateGuiValue(liveData.commandGear, (gear) => liveDataCommandGear.innerHTML = gear);
     updateGuiValue(liveData.etvMonitorVoltage, (voltage) => liveDataEtvMonitorVoltage.innerHTML = voltage + " V");
     updateGuiValue(liveData.epcPressure, (pressure) => liveDataEpcPressure.innerHTML = pressure + " p.s.i");
-    updateGuiValue(liveData.transmissionOilTemperature, (temperature) => liveDataTransmissionOilTemperature.innerHTML = temperature);
     updateGuiValue(liveData.prndlPosition, (position) => liveDataPrndlPosition.innerHTML = position);
     updateGuiValue(liveData.notUsed0A , (notUsed) => liveDataNotUsed0A.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed14 , (notUsed) => liveDataNotUsed14.innerHTML = notUsed);
