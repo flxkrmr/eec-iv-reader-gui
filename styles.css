@@ -43,6 +43,10 @@ body {
     width: 20%;
 }
 
+.data-type {
+    font-weight: bold;
+}
+
 #alert {
     display: block;
     position: absolute;
@@ -72,6 +76,10 @@ body {
 
 .green {
     background-color: green !important;
+}
+
+.live-data-container .row {
+    min-height: 48px;
 }
 
 .dot {

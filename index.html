@@ -6,10 +6,8 @@
     <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'"/>
     <link rel="stylesheet" href="./vendor/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="./styles.css">
-
     <title>EEC IV Reader GUI</title>
   </head>
-
   <body>
     <div class="container-fluid main-container">
       <div class="row control-container">
@@ -18,6 +16,7 @@
           <button id="serialdisconnect" class="btn btn-primary" disabled>Disconnect</button>
         </div>
       </div>
+      <a id="data-download">Download</a>
 
       <div class="row border data-container overflow-auto" id="init-data-container">
         <div class="col">
@@ -111,27 +110,27 @@
           <h3>
             Live Data <span id="live-data-dot" class="dot"></span>
           </h3>
-          <div class="container-fluid">
+          <div class="container-fluid live-data-container">
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 RPM
               </div>
-              <div class="col" id="data-rpm">
+              <div class="col border-end" id="data-rpm">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Throttle Position
               </div>
-              <div class="col" id="data-throttle">
+              <div class="col border-end" id="data-throttle">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Throttle Mode
               </div>
-              <div class="col" id="data-throttle-mode">
+              <div class="col border-end" id="data-throttle-mode">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Supply Voltage
               </div>
               <div class="col" id="data-supply-voltage">
@@ -139,25 +138,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Coolant Temperature
               </div>
-              <div class="col" id="data-coolant-temp">
+              <div class="col border-end" id="data-coolant-temp">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Coolant Sensor
               </div>
-              <div class="col" id="data-coolant-temp-sensor">
+              <div class="col border-end" id="data-coolant-temp-sensor">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Intake Air Temperature
               </div>
-              <div class="col" id="data-air-temp">
+              <div class="col border-end" id="data-air-temp">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Intake Air Sensor
               </div>
               <div class="col" id="data-air-temp-sensor">
@@ -165,25 +164,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 EGR Differential Pressure
               </div>
-              <div class="col" id="data-egr">
+              <div class="col border-end" id="data-egr">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 EGR Duty Cycle
               </div>
-              <div class="col" id="data-egr-duty-cycle">
+              <div class="col border-end" id="data-egr-duty-cycle">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Lambda
               </div>
-              <div class="col" id="data-lambda">
+              <div class="col border-end" id="data-lambda">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 EGO
               </div>
               <div class="col" id="data-ego">
@@ -191,25 +190,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Injection Pulse (Fuel Pulsewidth)
               </div>
-              <div class="col" id="data-fuel-pulsewidth">
+              <div class="col border-end" id="data-fuel-pulsewidth">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Ignition Timing
               </div>
-              <div class="col" id="data-ignition-timing">
+              <div class="col border-end" id="data-ignition-timing">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Speed
               </div>
-              <div class="col" id="data-speed">
+              <div class="col border-end" id="data-speed">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Normalized Air Charge Value
               </div>
               <div class="col" id="data-air-charge">
@@ -217,25 +216,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Speed unfiltered
               </div>
-              <div class="col" id="data-speed-unfiltered">
+              <div class="col border-end" id="data-speed-unfiltered">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Barometric Pressure
               </div>
-              <div class="col" id="data-bp">
+              <div class="col border-end" id="data-bp">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 MAP
               </div>
-              <div class="col" id="data-map">
+              <div class="col border-end" id="data-map">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Calibration Voltage
               </div>
               <div class="col" id="data-calibration-voltage">
@@ -243,25 +242,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Transmission Oil Temperature
               </div>
-              <div class="col" id="data-transmission-oil-temperature">
+              <div class="col border-end" id="data-transmission-oil-temperature">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Idle Speed Duty Cycle
               </div>
-              <div class="col" id="data-idle-speed">
+              <div class="col border-end" id="data-idle-speed">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 SCAP Sensor Frequency
               </div>
-              <div class="col" id="data-scap">
+              <div class="col border-end" id="data-scap">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Adaptive Fuel Correction
               </div>
               <div class="col" id="data-adaptive-fuel-correction">
@@ -269,25 +268,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Desired RPM
               </div>
-              <div class="col" id="data-desired-rpm">
+              <div class="col border-end" id="data-desired-rpm">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Lowest filtered Throttle Position
               </div>
-              <div class="col" id="data-ratch">
+              <div class="col border-end" id="data-ratch">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Time since Startup
               </div>
-              <div class="col" id="data-time-since-startup">
+              <div class="col border-end" id="data-time-since-startup">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 OCC Input Level
               </div>
               <div class="col" id="data-occ">
@@ -295,25 +294,25 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Neutral/Drive Input
               </div>
-              <div class="col" id="data-neutral-drive-input">
+              <div class="col border-end" id="data-neutral-drive-input">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Converter Clutch
               </div>
-              <div class="col" id="data-converter-clutch">
+              <div class="col border-end" id="data-converter-clutch">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Command Gear
               </div>
-              <div class="col" id="data-command-gear">
+              <div class="col border-end" id="data-command-gear">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 ETV Monitor Voltage
               </div>
               <div class="col" id="data-etv-monitor-voltage">
@@ -321,21 +320,23 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 EPC Pressure
               </div>
-              <div class="col" id="data-epc-pressure">
+              <div class="col border-end" id="data-epc-pressure">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 PRNDL Position
               </div>
-              <div class="col" id="data-prndl-position">
+              <div class="col border-end" id="data-prndl-position">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
+                Air Flow Meter
               </div>
-              <div class="col">
+              <div class="col" id="data-air-flow-meter">
+                -
               </div>
               <div class="col">
               </div>
@@ -343,25 +344,41 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col-2 data-type">
+                Bitmap 0
+              </div>
+              <div class="col-10" id="data-bitmap-0">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col-2 data-type">
+                Bitmap 1
+              </div>
+              <div class="col-10" id="data-bitmap-1">
+                -
+              </div>
+            </div>
+            <div class="row border-bottom">
+              <div class="col data-type">
                 Unknown (0x0A)
               </div>
               <div class="col" id="data-not-used-0A">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x14)
               </div>
-              <div class="col" id="data-not-used-14">
+              <div class="col border-end" id="data-not-used-14">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x16)
               </div>
-              <div class="col" id="data-not-used-16">
+              <div class="col border-end" id="data-not-used-16">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x19)
               </div>
               <div class="col" id="data-not-used-19">
@@ -369,51 +386,49 @@
               </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x1C)
               </div>
-              <div class="col" id="data-not-used-1C">
+              <div class="col border-end" id="data-not-used-1C">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x1D)
               </div>
-              <div class="col" id="data-not-used-1D">
+              <div class="col border-end" id="data-not-used-1D">
                 -
               </div>
-              <div class="col">
-                Unknown (0x26)
-              </div>
-              <div class="col" id="data-not-used-26">
-                -
-              </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x29)
               </div>
               <div class="col" id="data-not-used-29">
                 -
               </div>
+              <div class="col data-type">
+              </div>
+              <div class="col">
+              </div>
             </div>
             <div class="row border-bottom">
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x2C)
               </div>
-              <div class="col" id="data-not-used-2C">
+              <div class="col border-end" id="data-not-used-2C">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x31)
               </div>
-              <div class="col" id="data-not-used-31">
+              <div class="col border-end" id="data-not-used-31">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x33)
               </div>
-              <div class="col" id="data-not-used-33">
+              <div class="col border-end" id="data-not-used-33">
                 -
               </div>
-              <div class="col">
+              <div class="col data-type">
                 Unknown (0x34)
               </div>
               <div class="col" id="data-not-used-34">
