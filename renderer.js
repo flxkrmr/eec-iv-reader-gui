@@ -287,10 +287,10 @@ async function serialConnect() {
     updateGuiValue(liveData.egrDutyCycle, (egr) => liveDataEgrDutyCycle.innerHTML = egr + " A/D count");
     updateGuiValue(liveData.fuelPulsewidth, (fuelPulsewidth) => liveDataFuelPulsewidth.innerHTML = fuelPulsewidth + " clock ticks");
     updateGuiValue(liveData.totalSparkAdvance, (totalSparkAdvance) => liveDataIgnitionTiming.innerHTML = totalSparkAdvance + "°");
-    updateGuiValue(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed + " km/h");
-    updateGuiValue(liveData.speedUnfiltered, (speed) => liveDataSpeedUnfiltered.innerHTML = speed + " km/h");
-    updateGuiValue(liveData.airCharge, (airCharge) => liveDataAirCharge.innerHTML = airCharge + " %");
-    updateGuiValue(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda);
+    updateGuiValue(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed.toFixed(1) + " km/h");
+    updateGuiValue(liveData.speedUnfiltered, (speed) => liveDataSpeedUnfiltered.innerHTML = speed.toFixed(1) + " km/h");
+    updateGuiValue(liveData.airCharge, (airCharge) => liveDataAirCharge.innerHTML = airCharge.toFixed(2) + " %");
+    updateGuiValue(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda.toFixed(4));
     updateGuiValue(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D count");
     updateGuiValue(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
     updateGuiValue(liveData.manifoldAbsolutePressure, (map) => liveDataManifoldAbsolutePressure.innerHTML = map + " inHg");
@@ -298,7 +298,7 @@ async function serialConnect() {
     updateGuiValue(liveData.transmissionOilTemperature, (temp) => liveDataTransmissionOilTemperature.innerHTML = temp + " A/D count");
     updateGuiValue(liveData.scap, (scap) => liveDataScap.innerHTML = scap + " A/D count");
     updateGuiValue(liveData.idleSpeedDutyCycle, (dutyCycle) => liveDataIdleSpeed.innerHTML = dutyCycle + " A/D count");
-    updateGuiValue(liveData.adaptiveFuelCorrection, (correction) => liveDataAdaptiveFuelCorrection.innerHTML = correction + " A/F");
+    updateGuiValue(liveData.adaptiveFuelCorrection, (correction) => liveDataAdaptiveFuelCorrection.innerHTML = correction.toFixed(4) + " A/F");
     updateGuiValue(liveData.desiredRpm, (rpm) => liveDataDesiredRpm.innerHTML = rpm);
     updateGuiValue(liveData.ratch, (ratch) => liveDataRatch.innerHTML = ratch);
     updateGuiValue(liveData.timeSinceStartup, (time) => liveDataTimeSinceStartup.innerHTML = time + " s");
