@@ -1,5 +1,6 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, dialog, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const { writeFileSync } = require('fs');
 require('update-electron-app')()
 
 
@@ -123,8 +124,31 @@ const createWindow = () => {
   //mainWindow.webContents.openDevTools()
 }
 
+
+const handleDataDump = (event, data) => {
+  let path = dialog.showSaveDialogSync();
+
+  let csv = "";
+  csv = csv + "Time;Rpm\n";
+  data.forEach(line => {
+    var newDate = new Date();
+    newDate.setTime(line['time']);
+    csv = csv + newDate.toUTCString() + ";" + line['data']['rpm'] + "\n"
+  });
+
+  console.log(csv);
+
+  try {
+    writeFileSync(path,csv,{encoding:'utf8',flag:'w'})
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 app.whenReady().then(() => {
   createWindow()
+
+  ipcMain.on('download', handleDataDump);
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()

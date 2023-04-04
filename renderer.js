@@ -15,6 +15,24 @@ const initDataContainerMessage = document.getElementById('init-data-container-me
 const loadingSpinner = document.getElementById('spinner-overlay');
 loadingSpinner.style.display = 'none';
 
+const downloadButton = document.getElementById('download');
+
+let liveDataDump = [];
+// XXX
+let liveDataDumpLine = {
+  time: Date.now(),
+  data: {
+    rpm: 12344
+  }
+}
+liveDataDump.push(liveDataDumpLine);
+
+
+downloadButton.addEventListener('click', () => {
+  console.log("Hello");
+  window.mainprocess.download(liveDataDump);
+});
+
 const faultCodeFields = [
   document.getElementById('fault-code-1'),
   document.getElementById('fault-code-2'),
@@ -242,7 +260,6 @@ async function serialConnect() {
     }    
   }
 
-  let liveDataDump = [];
 
   serial.onLiveData = (data) => {
     clearTimeout(liveDataTimeoutId);
