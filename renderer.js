@@ -9,11 +9,6 @@ const liveDataDot = document.getElementById('live-data-dot');
 let liveDataTimeoutId = 0;
 let firstLiveData = true;
 
-// XXX
-initDataContainer.style.display = 'none';
-faultCodeDataContainer.style.display = 'none';
-liveDataContainer.style.display = 'flex';
-
 const alert = new Alert(document.getElementById('alert'));
 
 const initDataContainerMessage = document.getElementById('init-data-container-message');

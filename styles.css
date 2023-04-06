@@ -84,6 +84,7 @@ body {
 
 .live-data-container .row .col {
     display: flex;
+    padding: 2px 0;
     justify-content: flex-start;
 }
 
