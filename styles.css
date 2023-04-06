@@ -79,7 +79,22 @@ body {
 }
 
 .live-data-container .row {
-    min-height: 48px;
+    /*min-height: 48px;*/
+}
+
+.live-data-container .row .col {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.live-data-container .row .col .data-type {
+    text-align: right;
+    flex: 0 0 180px;
+}
+
+.live-data-container .row .col .data-value {
+    margin: 0 10px;
+    flex: 1;
 }
 
 .dot {
