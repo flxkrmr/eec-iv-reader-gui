@@ -14,7 +14,6 @@
         <div class="col">
           <button id="serialconnect" class="btn btn-primary">Connect</button>
           <button id="serialdisconnect" class="btn btn-primary" disabled>Disconnect</button>
-          <button id="download" class="btn btn-secondary">Download</button>
         </div>
       </div>
 
@@ -110,6 +109,7 @@
           <h3>
             Live Data <span id="live-data-dot" class="dot"></span>
           </h3>
+          <button id="download" class="btn btn-secondary">Export</button>
           <div class="container-fluid live-data-container">
             <div class="row row-cols-xl-4 row-cols-md-2 row-cols-1">
               <div class="col border-bottom">
@@ -354,5 +354,6 @@
   <script src="./lib/eec-iv.js"></script>
   <script src="./lib/serial.js"></script>
   <script src="./lib/alert.js"></script>
+  <script src="./lib/export.js"></script>
   <script src="./renderer.js"></script>
 </html>

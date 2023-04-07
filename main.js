@@ -126,20 +126,13 @@ const createWindow = () => {
 
 
 const handleDataDump = (event, data) => {
-  let path = dialog.showSaveDialogSync();
-
-  let csv = "";
-  csv = csv + "Time;Rpm\n";
-  data.forEach(line => {
-    var newDate = new Date();
-    newDate.setTime(line['time']);
-    csv = csv + newDate.toUTCString() + ";" + line['data']['rpm'] + "\n"
-  });
-
-  console.log(csv);
+  let path = dialog.showSaveDialogSync({ filters: [
+    { name: 'CSV', extensions: ['csv'] },
+    { name: 'All Files', extensions: ['*'] }
+  ]});
 
   try {
-    writeFileSync(path,csv,{encoding:'utf8',flag:'w'})
+    writeFileSync(path,data,{encoding:'utf8',flag:'w'})
   } catch (err) {
     console.error(err);
   }

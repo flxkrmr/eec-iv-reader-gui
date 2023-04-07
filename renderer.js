@@ -18,19 +18,9 @@ loadingSpinner.style.display = 'none';
 const downloadButton = document.getElementById('download');
 
 let liveDataDump = [];
-// XXX
-let liveDataDumpLine = {
-  time: Date.now(),
-  data: {
-    rpm: 12344
-  }
-}
-liveDataDump.push(liveDataDumpLine);
-
-
 downloadButton.addEventListener('click', () => {
-  console.log("Hello");
-  window.mainprocess.download(liveDataDump);
+  const csvData = createCsvString(liveDataDump)
+  window.mainprocess.download(csvData);
 });
 
 const faultCodeFields = [
@@ -143,6 +133,7 @@ async function serialConnect() {
   console.log("Connecting");
 
   const ports = await serial.getPorts();
+  liveDataDump = [];
 
   if (ports.length == 0) {
     alert.show("No ports found. Is Reader connected?", true); 
@@ -289,8 +280,6 @@ async function serialConnect() {
       data: liveData,
     }
     liveDataDump.push(liveDataDumpLine);
-
-    console.log(liveDataDump);
 
     updateGuiValue(liveData.rpm, (rpm) => liveDataRpm.innerHTML = rpm);
     updateGuiValue(liveData.supplyVoltage, (supplyVoltage) => liveDataSupplyVoltage.innerHTML = supplyVoltage.toFixed(2) + " V");
