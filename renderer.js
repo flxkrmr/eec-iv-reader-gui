@@ -1,3 +1,5 @@
+//document.getElementById('version').textContent = window.mainprocess.version();
+
 const connectButton = document.getElementById('serialconnect');
 const disconnectButton = document.getElementById('serialdisconnect');
 
