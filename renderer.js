@@ -1,4 +1,9 @@
-//document.getElementById('version').textContent = window.mainprocess.version();
+const setVersion = async () => {
+  const version = await window.mainprocess.version()
+  document.getElementById('version').textContent = version;
+}
+
+setVersion()
 
 const connectButton = document.getElementById('serialconnect');
 const disconnectButton = document.getElementById('serialdisconnect');

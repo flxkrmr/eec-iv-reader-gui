@@ -19,7 +19,7 @@ body {
 
 .data-container {
     height: 100%;
-    margin: 12px 0 12px;
+    margin: 12px 0 3px;
 }
 
 #live-data-container {
@@ -37,6 +37,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#col-version {
+    height: 1.5em;
+    text-align: end;
+    margin-bottom: 3px;
+    font-size: 0.8em;
 }
 
 .data-table .data-type {
