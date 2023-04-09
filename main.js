@@ -4,8 +4,8 @@ const { writeFileSync } = require('fs');
 require('update-electron-app')()
 
 // set empty Menu
-const menu = new Menu();
-Menu.setApplicationMenu(menu);
+//const menu = new Menu();
+//Menu.setApplicationMenu(menu);
 
 if (handleSquirrelEvent()) {
   // squirrel event handled and app will exit in 1000ms, so don't do anything else
@@ -78,7 +78,7 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
-    //autoHideMenuBar: true,
+    autoHideMenuBar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
