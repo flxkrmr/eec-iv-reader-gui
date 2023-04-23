@@ -70,7 +70,8 @@ const liveDataAirTemp = document.getElementById('data-air-temp');
 const liveDataAirTempSensor = document.getElementById('data-air-temp-sensor');
 const liveDataEgr = document.getElementById('data-egr');
 const liveDataEgrDutyCycle = document.getElementById('data-egr-duty-cycle');
-const liveDataLambda = document.getElementById('data-lambda');
+const liveDataLambda1 = document.getElementById('data-lambda-1');
+const liveDataLambda2 = document.getElementById('data-lambda-2');
 const liveDataEgo = document.getElementById('data-ego');
 const liveDataFuelPulsewidth = document.getElementById('data-fuel-pulsewidth');
 const liveDataIgnitionTiming = document.getElementById('data-ignition-timing');
@@ -303,7 +304,8 @@ async function serialConnect() {
     updateGuiValue(liveData.speed, (speed) => liveDataSpeed.innerHTML = speed.toFixed(1) + " km/h");
     updateGuiValue(liveData.speedUnfiltered, (speed) => liveDataSpeedUnfiltered.innerHTML = speed.toFixed(1) + " km/h");
     updateGuiValue(liveData.airCharge, (airCharge) => liveDataAirCharge.innerHTML = airCharge.toFixed(2) + " %");
-    updateGuiValue(liveData.lambda1, (lambda) => liveDataLambda.innerHTML = lambda.toFixed(4));
+    updateGuiValue(liveData.lambda1, (lambda) => liveDataLambda1.innerHTML = lambda.toFixed(4));
+    updateGuiValue(liveData.lambda2, (lambda) => liveDataLambda2.innerHTML = lambda.toFixed(4));
     updateGuiValue(liveData.ego1, (ego) => liveDataEgo.innerHTML = ego + " A/D C.");
     updateGuiValue(liveData.barometricPressure, (bp) => liveDataBarometricPressure.innerHTML = bp + " inHg");
     updateGuiValue(liveData.manifoldAbsolutePressure, (map) => liveDataManifoldAbsolutePressure.innerHTML = map + " inHg");
@@ -333,7 +335,6 @@ async function serialConnect() {
     updateGuiValue(liveData.notUsed1D, (notUsed) => liveDataNotUsed1D.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed26, (notUsed) => liveDataNotUsed26.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed29, (notUsed) => liveDataNotUsed29.innerHTML = notUsed);
-    updateGuiValue(liveData.notUsed2C, (notUsed) => liveDataNotUsed2C.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed31, (notUsed) => liveDataNotUsed31.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed33, (notUsed) => liveDataNotUsed33.innerHTML = notUsed);
     updateGuiValue(liveData.notUsed34, (notUsed) => liveDataNotUsed34.innerHTML = notUsed);
