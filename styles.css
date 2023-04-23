@@ -57,7 +57,7 @@ body {
 #alert {
     display: block;
     position: absolute;
-    bottom: 18px;
+    bottom: 21px;
     left: 10px;
     margin-left: 1rem;
 }
